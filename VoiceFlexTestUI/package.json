@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
     "clean": "tsc --build --clean"
+  },
+  "engines": {
+    "node": ">=20.11.x"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,9 @@
     "@types/node": "^22.4.0",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
+    "concurrently": "^8.2.2",
     "eslint": "^9.9.0",
+    "http-server": "^14.1.1",
     "typescript": "^5.5.4"
   }
 }
