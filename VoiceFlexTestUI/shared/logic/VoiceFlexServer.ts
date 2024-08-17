@@ -20,11 +20,10 @@ export class VoiceFlexServer {
             .then(res => { return res as T; })
     }
 
-    private async postToServer<Trequest, Tresponse>(url: string, data: Trequest): Promise<Tresponse> {
+    private async postToServer<TRequest, TResponse>(url: string, data: TRequest): Promise<TResponse> {
         const headers: Headers = new Headers();
         headers.set('Content-Type', 'application/json');
         headers.set('Accept', 'application/json');
-        let json = JSON.stringify(data);
         const request: RequestInit = { method: 'POST', headers: headers, body: JSON.stringify(data) };
         //return fetch(url, request)
         //    .then(res => res.json())
@@ -35,6 +34,6 @@ export class VoiceFlexServer {
             let error = (await response.json()) as ErrorDto;
         }
 
-        return (await response.json()) as Tresponse;
+        return (await response.json()) as TResponse;
     }
 }

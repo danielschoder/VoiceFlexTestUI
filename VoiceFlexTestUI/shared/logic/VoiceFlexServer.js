@@ -18,7 +18,6 @@ export class VoiceFlexServer {
         const headers = new Headers();
         headers.set('Content-Type', 'application/json');
         headers.set('Accept', 'application/json');
-        let json = JSON.stringify(data);
         const request = { method: 'POST', headers: headers, body: JSON.stringify(data) };
         //return fetch(url, request)
         //    .then(res => res.json())

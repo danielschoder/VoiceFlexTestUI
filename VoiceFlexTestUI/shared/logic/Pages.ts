@@ -1,17 +1,36 @@
-import { AccountDto, ErrorDto} from "../models/VoiceFlex.js";
-
-export enum Page {
-    Scenario1,
-    Scenario2,
-    Scenario3,
-    Scenario4
-}
+import { AccountDto } from "../models/VoiceFlex.js";
 
 export class Pages {
 
     public Scenario1(account: AccountDto): string {
         let html = "<div>";
-        html += "<h3>Scenario 1</h3>";
+        html += "<h3>Scenario 1: Create account</h3>";
+        html += "<p>";
+        html += account.id;
+        html += "</p>";
+        html += "<p>";
+        html += account.description;
+        html += "</p>";
+        html += "</div>";
+        return html;
+    }
+
+    public Scenario2(account: AccountDto): string {
+        let html = "<div>";
+        html += "<h3>Scenario 2: Create phone number</h3>";
+        html += "<p>";
+        html += account.id;
+        html += "</p>";
+        html += "<p>";
+        html += account.description;
+        html += "</p>";
+        html += "</div>";
+        return html;
+    }
+
+    public Scenario3(account: AccountDto): string {
+        let html = "<div>";
+        html += "<h3>Scenario 3: Assign phone number to account</h3>";
         html += "<p>";
         html += account.id;
         html += "</p>";
@@ -24,7 +43,7 @@ export class Pages {
 
     public Scenario4(account: AccountDto): string {
         let html = "<div>";
-        html += "<h3>Scenario 4</h3>";
+        html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
         html += "<p>";
         html += account.description;
         html += "</p>";
