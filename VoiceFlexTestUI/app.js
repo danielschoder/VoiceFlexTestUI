@@ -9,12 +9,21 @@ var _loadPage = new LoadPage(_server, _pages);
 const button = document.getElementById('startTestButton');
 if (button) {
     button.addEventListener('click', async function () {
-        let reportDiv = document.getElementById('testReport');
-        if (reportDiv == null) {
+        let testStarted = document.getElementById('testStarted');
+        if (testStarted == null) {
             return;
         }
-        reportDiv.innerHTML = "Test started";
-        reportDiv.innerHTML = await _loadPage.getHtml(0, "36B5B29E-7984-4274-87BB-91FF2FC72C69");
+        let scenario1Div = document.getElementById('scenario1');
+        if (scenario1Div == null) {
+            return;
+        }
+        let scenario4Div = document.getElementById('scenario4');
+        if (scenario4Div == null) {
+            return;
+        }
+        testStarted.innerHTML = "Test started";
+        scenario1Div.innerHTML = await _loadPage.getHtml(0);
+        scenario4Div.innerHTML = await _loadPage.getHtml(3);
     });
 }
 //# sourceMappingURL=app.js.map

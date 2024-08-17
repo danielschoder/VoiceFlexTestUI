@@ -1,1 +1,1 @@
-{"version":3,"file":"VoiceFlex.js","sourceRoot":"","sources":["VoiceFlex.ts"],"names":[],"mappings":""}
+{"version":3,"file":"VoiceFlex.js","sourceRoot":"","sources":["VoiceFlex.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,gBAAgB;IACzB,WAAW,CAAS;IACpB,MAAM,CAAS;IAEf,YAAY,WAAmB,EAAE,MAAc;QAC3C,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;QAC/B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;CACJ;AAED,MAAM,OAAO,cAAc;IACvB,EAAE,CAAS;IACX,MAAM,CAAS;IAEf,YAAY,EAAU,EAAE,MAAc;QAClC,IAAI,CAAC,EAAE,GAAG,EAAE,CAAC;QACb,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;CACJ"}
