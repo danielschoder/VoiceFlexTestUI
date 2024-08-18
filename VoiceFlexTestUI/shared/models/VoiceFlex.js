@@ -6,12 +6,18 @@ export class AccountCreateDto {
         this.status = status;
     }
 }
-export class PhoneNumberDto {
-    id;
+export class PhoneNumberCreateDto {
     number;
-    constructor(id, number) {
-        this.id = id;
+    constructor(number) {
         this.number = number;
+    }
+}
+export class PhoneNumberAssignDto {
+    id;
+    accountId;
+    constructor(id, accountId) {
+        this.id = id;
+        this.accountId = accountId;
     }
 }
 //# sourceMappingURL=VoiceFlex.js.map

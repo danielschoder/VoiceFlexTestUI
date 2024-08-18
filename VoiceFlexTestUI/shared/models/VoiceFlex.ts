@@ -8,13 +8,21 @@ export class AccountCreateDto {
     }
 }
 
-export class PhoneNumberDto {
-    id: string;
+export class PhoneNumberCreateDto {
     number: string;
 
-    constructor(id: string, number: string) {
-        this.id = id;
+    constructor(number: string) {
         this.number = number;
+    }
+}
+
+export class PhoneNumberAssignDto {
+    id: string;
+    accountId: string;
+
+    constructor(id: string, accountId: string) {
+        this.id = id;
+        this.accountId = accountId;
     }
 }
 
@@ -22,6 +30,12 @@ export interface AccountDto {
     id: string;
     description: string;
     phoneNumbers: Array<PhoneNumberDto>;
+}
+
+export interface PhoneNumberDto {
+    id: string;
+    number: string;
+    accountId: string;
 }
 
 export interface ErrorDto {

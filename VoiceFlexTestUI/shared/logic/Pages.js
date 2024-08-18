@@ -1,51 +1,69 @@
 export class Pages {
     Scenario1(account) {
         let html = "<div>";
-        html += "<h3>Scenario 1</h3>";
+        html += "<h3>Scenario 1: Create account</h3>";
         html += "<p>";
-        html += account.id;
+        html += `id: ${account.id}`;
         html += "</p>";
         html += "<p>";
-        html += account.description;
-        html += "</p>";
-        html += "</div>";
-        return html;
-    }
-    Scenario2(account) {
-        let html = "<div>";
-        html += "<h3>Scenario 2</h3>";
-        html += "<p>";
-        html += account.id;
-        html += "</p>";
-        html += "<p>";
-        html += account.description;
+        html += `description: ${account.description}`;
         html += "</p>";
         html += "</div>";
         return html;
     }
-    Scenario3(account) {
+    Scenario2(phoneNumber) {
         let html = "<div>";
-        html += "<h3>Scenario 3</h3>";
+        html += "<h3>Scenario 2: Create phone number</h3>";
         html += "<p>";
-        html += account.id;
+        html += `id: ${phoneNumber.id}`;
         html += "</p>";
         html += "<p>";
-        html += account.description;
+        html += `number: ${phoneNumber.number}`;
+        html += "</p>";
+        html += "<p>";
+        html += `accountId: ${phoneNumber.accountId}`;
+        html += "</p>";
+        html += "</div>";
+        return html;
+    }
+    Scenario3(accountId, phoneNumber) {
+        let html = "<div>";
+        html += `<h3>Scenario 3: Assign phone number to account ${accountId}</h3>`;
+        html += "<p>";
+        html += `id: ${phoneNumber.id}`;
+        html += "</p>";
+        html += "<p>";
+        html += `number: ${phoneNumber.number}`;
+        html += "</p>";
+        html += "<p>";
+        html += `accountId: ${phoneNumber.accountId}`;
         html += "</p>";
         html += "</div>";
         return html;
     }
     Scenario4(account) {
         let html = "<div>";
-        html += "<h3>Scenario 4</h3>";
+        html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
         html += "<p>";
-        html += account.description;
+        html += `id: ${account.id}`;
+        html += "</p>";
+        html += "<p>";
+        html += `description: ${account.description}`;
         html += "</p>";
         html += "<ul>";
         for (const phoneNumber of account.phoneNumbers) {
-            html += `<li>${phoneNumber.number}</li>`;
+            html += `<li>number: ${phoneNumber.number}</li>`;
         }
         html += "</ul>";
+        html += "</div>";
+        return html;
+    }
+    Scenario5(id) {
+        let html = "<div>";
+        html += "<h3>Scenario 5: Delete phone number</h3>";
+        html += "<p>";
+        html += `deleted id: ${id}`;
+        html += "</p>";
         html += "</div>";
         return html;
     }

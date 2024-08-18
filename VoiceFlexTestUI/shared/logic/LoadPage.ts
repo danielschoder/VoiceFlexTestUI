@@ -1,8 +1,9 @@
-import { AccountCreateDto } from "../models/VoiceFlex.js";
+import { AccountCreateDto, PhoneNumberAssignDto, PhoneNumberCreateDto } from "../models/VoiceFlex.js";
 import { Pages } from "./Pages.js";
 import { VoiceFlexServer } from "./VoiceFlexServer.js";
 
 var accountId: string;
+var phoneNumberId: string;
 
 export class LoadPage {
     private _server: VoiceFlexServer;
@@ -21,17 +22,25 @@ export class LoadPage {
     };
 
     public async getScenario2(): Promise<string> {
-        let _account = await this._server.getAccountWithPhoneNumbers(accountId);
-        return this._pages.Scenario1(_account);
+        let phoneNumber = new PhoneNumberCreateDto("07777666666");
+        let _phoneNumber = await this._server.postPhoneNumber(phoneNumber);
+        phoneNumberId = _phoneNumber.id;
+        return this._pages.Scenario2(_phoneNumber);
     };
 
     public async getScenario3(): Promise<string> {
-        let _account = await this._server.getAccountWithPhoneNumbers(accountId);
-        return this._pages.Scenario1(_account);
+        let phoneNumber = new PhoneNumberAssignDto(phoneNumberId, accountId);
+        let _phoneNumber = await this._server.patchPhoneNumber(phoneNumber);
+        return this._pages.Scenario3(accountId, _phoneNumber);
     };
 
     public async getScenario4(): Promise<string> {
         let _account = await this._server.getAccountWithPhoneNumbers(accountId);
         return this._pages.Scenario4(_account);
+    };
+
+    public async getScenario5(): Promise<string> {
+        await this._server.deletePhoneNumber(phoneNumberId);
+        return this._pages.Scenario5(phoneNumberId);
     };
 }

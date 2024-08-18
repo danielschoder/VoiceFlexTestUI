@@ -1,4 +1,4 @@
-import { AccountDto } from "../models/VoiceFlex.js";
+import { AccountDto, PhoneNumberDto } from "../models/VoiceFlex.js";
 
 export class Pages {
 
@@ -6,36 +6,42 @@ export class Pages {
         let html = "<div>";
         html += "<h3>Scenario 1: Create account</h3>";
         html += "<p>";
-        html += account.id;
+        html += `id: ${account.id}`;
         html += "</p>";
         html += "<p>";
-        html += account.description;
+        html += `description: ${account.description}`;
         html += "</p>";
         html += "</div>";
         return html;
     }
 
-    public Scenario2(account: AccountDto): string {
+    public Scenario2(phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
         html += "<h3>Scenario 2: Create phone number</h3>";
         html += "<p>";
-        html += account.id;
+        html += `id: ${phoneNumber.id}`;
         html += "</p>";
         html += "<p>";
-        html += account.description;
+        html += `number: ${phoneNumber.number}`;
+        html += "</p>";
+        html += "<p>";
+        html += `accountId: ${phoneNumber.accountId}`;
         html += "</p>";
         html += "</div>";
         return html;
     }
 
-    public Scenario3(account: AccountDto): string {
+    public Scenario3(accountId: string, phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
-        html += "<h3>Scenario 3: Assign phone number to account</h3>";
+        html += `<h3>Scenario 3: Assign phone number to account ${accountId}</h3>`;
         html += "<p>";
-        html += account.id;
+        html += `id: ${phoneNumber.id}`;
         html += "</p>";
         html += "<p>";
-        html += account.description;
+        html += `number: ${phoneNumber.number}`;
+        html += "</p>";
+        html += "<p>";
+        html += `accountId: ${phoneNumber.accountId}`;
         html += "</p>";
         html += "</div>";
         return html;
@@ -45,13 +51,26 @@ export class Pages {
         let html = "<div>";
         html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
         html += "<p>";
-        html += account.description;
+        html += `id: ${account.id}`;
+        html += "</p>";
+        html += "<p>";
+        html += `description: ${account.description}`;
         html += "</p>";
         html += "<ul>";
         for (const phoneNumber of account.phoneNumbers) {
-            html += `<li>${phoneNumber.number}</li>`;
+            html += `<li>number: ${phoneNumber.number}</li>`;
         }
         html += "</ul>";
+        html += "</div>";
+        return html;
+    }
+
+    public Scenario5(id: string): string {
+        let html = "<div>";
+        html += "<h3>Scenario 5: Delete phone number</h3>";
+        html += "<p>";
+        html += `deleted id: ${id}`;
+        html += "</p>";
         html += "</div>";
         return html;
     }
