@@ -11,6 +11,9 @@ export class Pages {
         html += "<p>";
         html += `description: ${account.description}`;
         html += "</p>";
+        html += "<p>";
+        html += `status: ${account.status}`;
+        html += "</p>";
         html += "</div>";
         return html;
     }
@@ -70,6 +73,22 @@ export class Pages {
         html += "<h3>Scenario 5: Delete phone number</h3>";
         html += "<p>";
         html += `deleted id: ${id}`;
+        html += "</p>";
+        html += "</div>";
+        return html;
+    }
+
+    public Scenario6(account: AccountDto): string {
+        let html = "<div>";
+        html += "<h3>Scenario 6: Suspend account</h3>";
+        html += "<p>";
+        html += `id: ${account.id}`;
+        html += "</p>";
+        html += "<p>";
+        html += `description: ${account.description}`;
+        html += "</p>";
+        html += "<p>";
+        html += `status: ${account.status}`;
         html += "</p>";
         html += "</div>";
         return html;

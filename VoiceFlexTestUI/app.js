@@ -12,6 +12,7 @@ document.getElementById('startTestButton').addEventListener('click', async funct
     document.getElementById('scenario3').innerHTML = await _loadPage.getScenario3();
     document.getElementById('scenario4').innerHTML = await _loadPage.getScenario4();
     document.getElementById('scenario5').innerHTML = await _loadPage.getScenario5();
+    document.getElementById('scenario6').innerHTML = await _loadPage.getScenario6();
     document.getElementById('testFinished').innerHTML = "Test finished";
 });
 //# sourceMappingURL=app.js.map

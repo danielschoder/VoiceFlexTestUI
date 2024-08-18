@@ -1,4 +1,4 @@
-import { AccountCreateDto, PhoneNumberAssignDto, PhoneNumberCreateDto } from "../models/VoiceFlex.js";
+import { AccountCreateDto, AccountUpdateStatusDto, PhoneNumberAssignDto, PhoneNumberCreateDto } from "../models/VoiceFlex.js";
 var accountId;
 var phoneNumberId;
 export class LoadPage {
@@ -36,6 +36,12 @@ export class LoadPage {
     async getScenario5() {
         await this._server.deletePhoneNumber(phoneNumberId);
         return this._pages.Scenario5(phoneNumberId);
+    }
+    ;
+    async getScenario6() {
+        let account = new AccountUpdateStatusDto(accountId, 0);
+        let _account = await this._server.patchAccount(account);
+        return this._pages.Scenario6(_account);
     }
     ;
 }

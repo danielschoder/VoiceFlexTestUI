@@ -1,13 +1,17 @@
-import { AccountCreateDto, AccountDto, ErrorDto, PhoneNumberAssignDto, PhoneNumberCreateDto, PhoneNumberDto } from "../models/VoiceFlex.js";
+import { AccountCreateDto, AccountDto, AccountUpdateStatusDto, ErrorDto, PhoneNumberAssignDto, PhoneNumberCreateDto, PhoneNumberDto } from "../models/VoiceFlex.js";
 
 export class VoiceFlexServer {
+
+    public async postAccount(account: AccountCreateDto): Promise<AccountDto> {
+        return await this.postToServer<AccountCreateDto, AccountDto>(`https://voiceflex-daniel.azurewebsites.net/api/accounts`, account);
+    }
 
     public async getAccountWithPhoneNumbers(id: string): Promise<AccountDto> {
         return await this.getFromServer<AccountDto>(`https://voiceflex-daniel.azurewebsites.net/api/accounts/${id}/phonenumbers`);
     }
 
-    public async postAccount(account: AccountCreateDto): Promise<AccountDto> {
-        return await this.postToServer<AccountCreateDto, AccountDto>(`https://voiceflex-daniel.azurewebsites.net/api/accounts`, account);
+    public async patchAccount(account: AccountUpdateStatusDto): Promise<AccountDto> {
+        return await this.patchToServer<AccountUpdateStatusDto, AccountDto>(`https://voiceflex-daniel.azurewebsites.net/api/accounts/${account.id}`, account);
     }
 
     public async postPhoneNumber(phoneNumber: PhoneNumberCreateDto): Promise<PhoneNumberDto> {
@@ -22,20 +26,6 @@ export class VoiceFlexServer {
         return await this.deleteFromServer(`https://voiceflex-daniel.azurewebsites.net/api/phonenumbers/${id}`);
     }
 
-    private async getFromServer<T>(url: string): Promise<T> {
-        const headers: Headers = new Headers()
-        headers.set('Content-Type', 'application/json')
-        headers.set('Accept', 'application/json')
-        const request: RequestInfo = new Request(url, { method: 'GET', headers: headers })
-
-        const response = await fetch(request);
-        if (!response.ok) {
-            let error = (await response.json()) as ErrorDto;
-        }
-
-        return (await response.json()) as T;
-    }
-
     private async postToServer<TRequest, TResponse>(url: string, data: TRequest): Promise<TResponse> {
         const headers: Headers = new Headers();
         headers.set('Content-Type', 'application/json');
@@ -48,6 +38,20 @@ export class VoiceFlexServer {
         }
 
         return (await response.json()) as TResponse;
+    }
+
+    private async getFromServer<T>(url: string): Promise<T> {
+        const headers: Headers = new Headers()
+        headers.set('Content-Type', 'application/json')
+        headers.set('Accept', 'application/json')
+        const request: RequestInfo = new Request(url, { method: 'GET', headers: headers })
+
+        const response = await fetch(request);
+        if (!response.ok) {
+            let error = (await response.json()) as ErrorDto;
+        }
+
+        return (await response.json()) as T;
     }
 
     private async patchToServer<TRequest, TResponse>(url: string, data: TRequest): Promise<TResponse> {

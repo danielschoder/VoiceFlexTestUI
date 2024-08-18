@@ -6,6 +6,14 @@ export class AccountCreateDto {
         this.status = status;
     }
 }
+export class AccountUpdateStatusDto {
+    id;
+    status;
+    constructor(id, status) {
+        this.id = id;
+        this.status = status;
+    }
+}
 export class PhoneNumberCreateDto {
     number;
     constructor(number) {
