@@ -5,6 +5,25 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta name="author" content="Daniel Schoder">
     <title>Daniel Schoder VoiceFlex</title>
+    <style>
+        h5 {
+            color: #0067B8;
+        }
+
+        #startTestButton {
+            width: 255px;
+            height: 40px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        #startTestButton:hover rect {
+            fill: #005CA5;
+        }
+    </style>
 </head>
 <body>
     <h1>Daniel Schoder VoiceFlex Technical Test</h1>
@@ -25,16 +44,21 @@
     </p>
     <h2>Test Automation Example</h2>
     <p>
-        <button id="startTestButton">Start Automated Test</button>
+        <button id="startTestButton">
+            <svg viewBox="0 0 255 40" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" rx="4" ry="4" width="255" height="40" fill="#0067B8" />
+                <text x="127" y="22" alignment-baseline="middle" fill="white" letter-spacing="1.05" font-weight="bold" text-anchor="middle">Start automated tests</text>
+            </svg>
+        </button>
     </p>
-    <div id="testStarted"></div>
+    <h5 id="testStarted"></h5>
     <div id="scenario1"></div>
     <div id="scenario2"></div>
     <div id="scenario3"></div>
     <div id="scenario4"></div>
     <div id="scenario5"></div>
     <div id="scenario6"></div>
-    <div id="testFinished"></div>
+    <h5 id="testFinished"></h5>
     <script type="module" src="app.js"></script>
 </body>
 </html>

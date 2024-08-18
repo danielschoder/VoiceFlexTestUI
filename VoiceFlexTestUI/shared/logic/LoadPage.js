@@ -9,39 +9,45 @@ export class LoadPage {
         this._server = server;
     }
     async getScenario1() {
-        let account = new AccountCreateDto("Roger Waters", 1);
-        let _account = await this._server.postAccount(account);
+        const startTime = new Date().getTime();
+        const account = new AccountCreateDto("Roger Waters", 1);
+        const _account = await this._server.postAccount(account);
         accountId = _account.id;
-        return this._pages.Scenario1(_account);
+        return this._pages.Scenario1(_account, new Date().getTime() - startTime);
     }
     ;
     async getScenario2() {
-        let phoneNumber = new PhoneNumberCreateDto("07777666666");
-        let _phoneNumber = await this._server.postPhoneNumber(phoneNumber);
+        const startTime = new Date().getTime();
+        const phoneNumber = new PhoneNumberCreateDto("07777666666");
+        const _phoneNumber = await this._server.postPhoneNumber(phoneNumber);
         phoneNumberId = _phoneNumber.id;
-        return this._pages.Scenario2(_phoneNumber);
+        return this._pages.Scenario2(_phoneNumber, new Date().getTime() - startTime);
     }
     ;
     async getScenario3() {
-        let phoneNumber = new PhoneNumberAssignDto(phoneNumberId, accountId);
-        let _phoneNumber = await this._server.patchPhoneNumber(phoneNumber);
-        return this._pages.Scenario3(_phoneNumber);
+        const startTime = new Date().getTime();
+        const phoneNumber = new PhoneNumberAssignDto(phoneNumberId, accountId);
+        const _phoneNumber = await this._server.patchPhoneNumber(phoneNumber);
+        return this._pages.Scenario3(_phoneNumber, new Date().getTime() - startTime);
     }
     ;
     async getScenario4() {
-        let _account = await this._server.getAccountWithPhoneNumbers(accountId);
-        return this._pages.Scenario4(_account);
+        const startTime = new Date().getTime();
+        const _account = await this._server.getAccountWithPhoneNumbers(accountId);
+        return this._pages.Scenario4(_account, new Date().getTime() - startTime);
     }
     ;
     async getScenario5() {
+        const startTime = new Date().getTime();
         await this._server.deletePhoneNumber(phoneNumberId);
-        return this._pages.Scenario5(phoneNumberId);
+        return this._pages.Scenario5(phoneNumberId, new Date().getTime() - startTime);
     }
     ;
     async getScenario6() {
-        let account = new AccountUpdateStatusDto(accountId, 0);
-        let _account = await this._server.patchAccount(account);
-        return this._pages.Scenario6(_account);
+        const startTime = new Date().getTime();
+        const account = new AccountUpdateStatusDto(accountId, 0);
+        const _account = await this._server.patchAccount(account);
+        return this._pages.Scenario6(_account, new Date().getTime() - startTime);
     }
     ;
 }

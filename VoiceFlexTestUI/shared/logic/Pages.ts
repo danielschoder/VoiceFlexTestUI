@@ -2,40 +2,40 @@ import { AccountDto, PhoneNumberDto } from "../models/VoiceFlex.js";
 
 export class Pages {
 
-    public Scenario1(account: AccountDto): string {
+    public Scenario1(account: AccountDto, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5("Scenario 1: Create account") +
+            this.htmlH3H5("Scenario 1: Create account", timeTaken) +
             this.AccountHtml(account));
     }
 
-    public Scenario2(phoneNumber: PhoneNumberDto): string {
+    public Scenario2(phoneNumber: PhoneNumberDto, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5("Scenario 2: Create phone number") +
+            this.htmlH3H5("Scenario 2: Create phone number", timeTaken) +
             this.PhoneNumberHtml(phoneNumber));
     }
 
-    public Scenario3(phoneNumber: PhoneNumberDto): string {
+    public Scenario3(phoneNumber: PhoneNumberDto, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5(`Scenario 3: Assign phone number to account`) +
+            this.htmlH3H5(`Scenario 3: Assign phone number to account`, timeTaken) +
             this.PhoneNumberHtml(phoneNumber));
     }
 
-    public Scenario4(account: AccountDto): string {
+    public Scenario4(account: AccountDto, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5(`Scenario 4: Show phone number(s) of account`) +
+            this.htmlH3H5(`Scenario 4: Show phone number(s) of account`, timeTaken) +
             this.AccountHtml(account) +
             this.PhoneNumbersHtml(account.phoneNumbers));
     }
 
-    public Scenario5(id: string): string {
+    public Scenario5(id: string, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5(`Scenario 5: Delete phone number`) +
+            this.htmlH3H5(`Scenario 5: Delete phone number`, timeTaken) +
             `<p>deleted id: ${id}</p>`);
     }
 
-    public Scenario6(account: AccountDto): string {
+    public Scenario6(account: AccountDto, timeTaken: number): string {
         return this.htmlDiv(
-            this.htmlH3H5(`Scenario 6: Suspend account`) +
+            this.htmlH3H5(`Scenario 6: Suspend account`, timeTaken) +
             this.AccountHtml(account));
     }
 
@@ -63,7 +63,7 @@ export class Pages {
         return `<div>${html}</div>`;
     }
 
-    private htmlH3H5(h3Text: string): string {
-        return `<h3>${h3Text}</h3><h5>${new Date().toISOString()}</h5>`
+    private htmlH3H5(h3Text: string, timeTaken: number): string {
+        return `<br /><h5>${new Date().toISOString()} - ${timeTaken}ms</h5><h3>${h3Text}</h3>`
     }
 }
