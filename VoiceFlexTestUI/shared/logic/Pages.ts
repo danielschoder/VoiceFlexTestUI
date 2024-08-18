@@ -5,6 +5,7 @@ export class Pages {
     public Scenario1(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 1: Create account</h3>";
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += this.AccountHtml(account);
         html += "</div>";
         return html;
@@ -13,6 +14,7 @@ export class Pages {
     public Scenario2(phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
         html += "<h3>Scenario 2: Create phone number</h3>";
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += this.PhoneNumberHtml(phoneNumber);
         html += "</div>";
         return html;
@@ -21,6 +23,7 @@ export class Pages {
     public Scenario3(accountId: string, phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
         html += `<h3>Scenario 3: Assign phone number to account ${accountId}</h3>`;
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += this.PhoneNumberHtml(phoneNumber);
         html += "</div>";
         return html;
@@ -29,10 +32,11 @@ export class Pages {
     public Scenario4(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += this.AccountHtml(account);
         html += "<ul>";
         for (const phoneNumber of account.phoneNumbers) {
-            html += `<li>id: ${phoneNumber.id} number: ${phoneNumber.number}</li>`;
+            html += `<li>id: ${phoneNumber.id} number: <b>${phoneNumber.number}</b></li>`;
         }
         html += "</ul>";
         html += "</div>";
@@ -42,6 +46,7 @@ export class Pages {
     public Scenario5(id: string): string {
         let html = "<div>";
         html += "<h3>Scenario 5: Delete phone number</h3>";
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += "<p>";
         html += `deleted id: ${id}`;
         html += "</p>";
@@ -52,6 +57,7 @@ export class Pages {
     public Scenario6(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 6: Suspend account</h3>";
+        html += `<h5>${this.TimeStamp()}</h5>`;
         html += this.AccountHtml(account);
         html += "</div>";
         return html;
@@ -62,10 +68,10 @@ export class Pages {
         html += `id: ${account.id}`;
         html += "</p>";
         html += "<p>";
-        html += `description: ${account.description}`;
+        html += `description: <b>${account.description}</b>`;
         html += "</p>";
         html += "<p>";
-        html += `status: ${account.status}`;
+        html += `status: <b>${account.status}</b>`;
         html += "</p>";
         return html;
     }
@@ -75,11 +81,16 @@ export class Pages {
         html += `id: ${phoneNumber.id}`;
         html += "</p>";
         html += "<p>";
-        html += `number: ${phoneNumber.number}`;
+        html += `number: <b>${phoneNumber.number}</b>`;
         html += "</p>";
         html += "<p>";
-        html += `accountId: ${phoneNumber.accountId}`;
+        html += `accountId: <b>${phoneNumber.accountId}</b>`;
         html += "</p>";
         return html;
+    }
+
+    private TimeStamp(): string {
+        const now = new Date();
+        return now.toISOString();
     }
 }
