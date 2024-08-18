@@ -5,15 +5,7 @@ export class Pages {
     public Scenario1(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 1: Create account</h3>";
-        html += "<p>";
-        html += `id: ${account.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `description: ${account.description}`;
-        html += "</p>";
-        html += "<p>";
-        html += `status: ${account.status}`;
-        html += "</p>";
+        html += this.AccountHtml(account);
         html += "</div>";
         return html;
     }
@@ -21,15 +13,7 @@ export class Pages {
     public Scenario2(phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
         html += "<h3>Scenario 2: Create phone number</h3>";
-        html += "<p>";
-        html += `id: ${phoneNumber.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `number: ${phoneNumber.number}`;
-        html += "</p>";
-        html += "<p>";
-        html += `accountId: ${phoneNumber.accountId}`;
-        html += "</p>";
+        html += this.PhoneNumberHtml(phoneNumber);
         html += "</div>";
         return html;
     }
@@ -37,15 +21,7 @@ export class Pages {
     public Scenario3(accountId: string, phoneNumber: PhoneNumberDto): string {
         let html = "<div>";
         html += `<h3>Scenario 3: Assign phone number to account ${accountId}</h3>`;
-        html += "<p>";
-        html += `id: ${phoneNumber.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `number: ${phoneNumber.number}`;
-        html += "</p>";
-        html += "<p>";
-        html += `accountId: ${phoneNumber.accountId}`;
-        html += "</p>";
+        html += this.PhoneNumberHtml(phoneNumber);
         html += "</div>";
         return html;
     }
@@ -53,15 +29,10 @@ export class Pages {
     public Scenario4(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
-        html += "<p>";
-        html += `id: ${account.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `description: ${account.description}`;
-        html += "</p>";
+        html += this.AccountHtml(account);
         html += "<ul>";
         for (const phoneNumber of account.phoneNumbers) {
-            html += `<li>number: ${phoneNumber.number}</li>`;
+            html += `<li>id: ${phoneNumber.id} number: ${phoneNumber.number}</li>`;
         }
         html += "</ul>";
         html += "</div>";
@@ -81,7 +52,13 @@ export class Pages {
     public Scenario6(account: AccountDto): string {
         let html = "<div>";
         html += "<h3>Scenario 6: Suspend account</h3>";
-        html += "<p>";
+        html += this.AccountHtml(account);
+        html += "</div>";
+        return html;
+    }
+
+    private AccountHtml(account: AccountDto): string {
+        let html = "<p>";
         html += `id: ${account.id}`;
         html += "</p>";
         html += "<p>";
@@ -90,7 +67,19 @@ export class Pages {
         html += "<p>";
         html += `status: ${account.status}`;
         html += "</p>";
-        html += "</div>";
+        return html;
+    }
+
+    private PhoneNumberHtml(phoneNumber: PhoneNumberDto): string {
+        let html = "<p>";
+        html += `id: ${phoneNumber.id}`;
+        html += "</p>";
+        html += "<p>";
+        html += `number: ${phoneNumber.number}`;
+        html += "</p>";
+        html += "<p>";
+        html += `accountId: ${phoneNumber.accountId}`;
+        html += "</p>";
         return html;
     }
 }
