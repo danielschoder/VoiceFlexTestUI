@@ -25,7 +25,7 @@ export class LoadPage {
     async getScenario3() {
         let phoneNumber = new PhoneNumberAssignDto(phoneNumberId, accountId);
         let _phoneNumber = await this._server.patchPhoneNumber(phoneNumber);
-        return this._pages.Scenario3(accountId, _phoneNumber);
+        return this._pages.Scenario3(_phoneNumber);
     }
     ;
     async getScenario4() {

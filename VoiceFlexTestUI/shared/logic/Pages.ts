@@ -3,94 +3,67 @@ import { AccountDto, PhoneNumberDto } from "../models/VoiceFlex.js";
 export class Pages {
 
     public Scenario1(account: AccountDto): string {
-        let html = "<div>";
-        html += "<h3>Scenario 1: Create account</h3>";
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += this.AccountHtml(account);
-        html += "</div>";
-        return html;
+        return this.htmlDiv(
+            this.htmlH3H5("Scenario 1: Create account") +
+            this.AccountHtml(account));
     }
 
     public Scenario2(phoneNumber: PhoneNumberDto): string {
-        let html = "<div>";
-        html += "<h3>Scenario 2: Create phone number</h3>";
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += this.PhoneNumberHtml(phoneNumber);
-        html += "</div>";
-        return html;
+        return this.htmlDiv(
+            this.htmlH3H5("Scenario 2: Create phone number") +
+            this.PhoneNumberHtml(phoneNumber));
     }
 
-    public Scenario3(accountId: string, phoneNumber: PhoneNumberDto): string {
-        let html = "<div>";
-        html += `<h3>Scenario 3: Assign phone number to account ${accountId}</h3>`;
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += this.PhoneNumberHtml(phoneNumber);
-        html += "</div>";
-        return html;
+    public Scenario3(phoneNumber: PhoneNumberDto): string {
+        return this.htmlDiv(
+            this.htmlH3H5(`Scenario 3: Assign phone number to account`) +
+            this.PhoneNumberHtml(phoneNumber));
     }
 
     public Scenario4(account: AccountDto): string {
-        let html = "<div>";
-        html += "<h3>Scenario 4: Show phone number(s) of an account</h3>";
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += this.AccountHtml(account);
-        html += "<ul>";
-        for (const phoneNumber of account.phoneNumbers) {
-            html += `<li>id: ${phoneNumber.id} number: <b>${phoneNumber.number}</b></li>`;
-        }
-        html += "</ul>";
-        html += "</div>";
-        return html;
+        return this.htmlDiv(
+            this.htmlH3H5(`Scenario 4: Show phone number(s) of account`) +
+            this.AccountHtml(account) +
+            this.PhoneNumbersHtml(account.phoneNumbers));
     }
 
     public Scenario5(id: string): string {
-        let html = "<div>";
-        html += "<h3>Scenario 5: Delete phone number</h3>";
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += "<p>";
-        html += `deleted id: ${id}`;
-        html += "</p>";
-        html += "</div>";
-        return html;
+        return this.htmlDiv(
+            this.htmlH3H5(`Scenario 5: Delete phone number`) +
+            `<p>deleted id: ${id}</p>`);
     }
 
     public Scenario6(account: AccountDto): string {
-        let html = "<div>";
-        html += "<h3>Scenario 6: Suspend account</h3>";
-        html += `<h5>${this.TimeStamp()}</h5>`;
-        html += this.AccountHtml(account);
-        html += "</div>";
-        return html;
+        return this.htmlDiv(
+            this.htmlH3H5(`Scenario 6: Suspend account`) +
+            this.AccountHtml(account));
     }
 
     private AccountHtml(account: AccountDto): string {
-        let html = "<p>";
-        html += `id: ${account.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `description: <b>${account.description}</b>`;
-        html += "</p>";
-        html += "<p>";
-        html += `status: <b>${account.status}</b>`;
-        html += "</p>";
-        return html;
+        return `<p>id: ${account.id}</p>` +
+            `<p>description: <b>${account.description}</b></p>` +
+            `<p>status: <b>${account.status}</b></p>`;
     }
 
     private PhoneNumberHtml(phoneNumber: PhoneNumberDto): string {
-        let html = "<p>";
-        html += `id: ${phoneNumber.id}`;
-        html += "</p>";
-        html += "<p>";
-        html += `number: <b>${phoneNumber.number}</b>`;
-        html += "</p>";
-        html += "<p>";
-        html += `accountId: <b>${phoneNumber.accountId}</b>`;
-        html += "</p>";
-        return html;
+        return `<p>id: ${phoneNumber.id}</p>` +
+            `<p>number: <b>${phoneNumber.number}</b></p>` +
+            `<p>accountId: <b>${phoneNumber.accountId}</b></p>`;
     }
 
-    private TimeStamp(): string {
-        const now = new Date();
-        return now.toISOString();
+    private PhoneNumbersHtml(phoneNumbers: PhoneNumberDto[]): string {
+        let html = `<ul>`;
+        for (const phoneNumber of phoneNumbers) {
+            html += `<li>id: ${phoneNumber.id} number: <b>${phoneNumber.number}</b></li>`;
+        }
+        return html + `</ul>`;
+    }
+
+    private htmlDiv(html: string): string {
+        return `<div>${html}</div>`;
+    }
+
+    private htmlH3H5(h3Text: string): string {
+        return `<h3>${h3Text}</h3><h5>${new Date().toISOString()}</h5>`
     }
 }
